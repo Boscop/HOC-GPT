@@ -27,8 +27,6 @@ export const run = async () => {
 
     // const loader = new PDFLoader(filePath);
     const rawDocs = await directoryLoader.load();
-    /* console.log('loaded docs', rawDocs);
-    return; */
 
     /* Split text into chunks */
     const textSplitter = new RecursiveCharacterTextSplitter({

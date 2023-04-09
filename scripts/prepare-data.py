@@ -48,17 +48,15 @@ from langchain.document_loaders import TextLoader
 for ext in ["hs", "hvm", "js", "kind2", "rs", "txt", "md"]:
   process_docs(DirectoryLoader(input_dir, glob = "**/*." + ext, loader_cls = TextLoader).load())
 
-# Load PDFs
-import glob
-from langchain.document_loaders import PyPDFLoader
-# from langchain.document_loaders import UnstructuredPDFLoader
-
-# Get a list of all PDF files in the directory
-for filepath in glob.glob(os.path.join(input_dir, "**/*.pdf")):
-  if "Yves Lafont" not in filepath or "Yves Lafont - Interaction Combinators (1 column).pdf" in filepath:
-    for (page, doc) in enumerate(PyPDFLoader(filepath).load_and_split()):
-      doc.metadata["source"] += " (page {})".format(page)
-      process_doc(doc)
+# # Load PDFs
+# import glob
+# from langchain.document_loaders import PyPDFLoader
+# # from langchain.document_loaders import UnstructuredPDFLoader
+# for filepath in glob.glob(os.path.join(input_dir, "**/*.pdf")):
+#   if "Yves Lafont" not in filepath or "Yves Lafont - Interaction Combinators (1 column).pdf" in filepath:
+#     for (page, doc) in enumerate(PyPDFLoader(filepath).load_and_split()):
+#       doc.metadata["source"] += " (page {})".format(page)
+#       process_doc(doc)
 
 print("Documents so far (without HTML files): ", len(documents))
 

@@ -22,6 +22,14 @@ wget --mirror -A html -I /15.0.0/docs --no-parent --compression=auto https://rel
 wget --mirror -A html -I /inkwell/inkwell --no-parent --compression=auto https://thedan64.github.io/inkwell/inkwell/index.html
 wget --mirror -A html -I /llvm-sys/latest/llvm_sys --no-parent --compression=auto https://docs.rs/llvm-sys/latest/llvm_sys/
 
+# Remove unnecessary files
+rm -rf releases.llvm.org/15.0.0/docs/{AMDGPU*,PDB,Proposals}
+
+# Download llvm-dev mailing list archives
+# wget -r -l1 -nd -P llvm-dev -A "*.txt.gz" https://lists.llvm.org/pipermail/llvm-dev/ && gunzip llvm-dev/*.txt.gz
+# Only download threads from 2018 onwards because the LLVM API changed a lot over the years
+wget -nc -r -l1 -nd -P llvm-dev -A "201[8-9]-*.txt.gz" -A "202[0-9]-*.txt.gz" https://lists.llvm.org/pipermail/llvm-dev/ && gunzip llvm-dev/*.txt.gz
+
 cd ..
 
 # List all extensions of files in directory
