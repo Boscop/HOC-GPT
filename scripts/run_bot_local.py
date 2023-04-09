@@ -23,8 +23,8 @@ from langchain.vectorstores import FAISS
 docsearch = FAISS.load_local("faiss_index", embeddings)
 
 from langchain import OpenAI, VectorDBQA
-# llm = OpenAI(temperature = 0.1, model_name = model, max_tokens = 256)
-llm = OpenAI(model_name = model)
+# llm = OpenAI(model_name = model, temperature = 0.1, max_tokens = 256)
+llm = OpenAI(model_name = model, temperature = 0.7)
 qa = VectorDBQA.from_chain_type(llm = llm, chain_type = "stuff", vectorstore = docsearch, return_source_documents = True)
 
 initial_prompt = "HOC is a startup building tech towards the massively parallel future of computation with a new VM called HVM based on interaction nets, an inherently concurrent computational model. For this conversation, you are a computer scientist working at HOC, helping to onboard a new developer who will be writing a LLVM backend for HVM. Consider the input as a question on explaining technical details about HVM and how different parts of its code relate to interaction net reductions, or how different parts of HVM's interpreter code can be translated to a codegen backend that uses LLVM."
