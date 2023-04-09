@@ -5,7 +5,8 @@ How to use:
 $ scripts/dl-data.sh
 $ python scripts/prepare-data.py
 $ export OPENAI_API_KEY=YOUR_KEY
-$ python scripts/run_local_bot.py "Your prompt"
+$ python scripts/ingest-data.py
+$ python scripts/run_bot_local.py "Your prompt"
 ```
 
 ---
