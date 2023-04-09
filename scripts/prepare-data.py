@@ -46,7 +46,7 @@ from langchain.document_loaders import DirectoryLoader
 from langchain.document_loaders import TextLoader
 # for ext in ["hs", "hvm", "js", "kind2", "rs", "txt"]:
 for ext in ["hs", "hvm", "js", "kind2", "rs", "txt", "md"]:
-  process_docs(DirectoryLoader(input_dir, glob = "**/*." + ext, loader_cls = TextLoader).load())
+  process_docs(DirectoryLoader(input_dir, glob = "**/*." + ext, loader_cls = TextLoader, loader_kwargs = { "encoding": "utf-8" }).load())
 
 # # Load PDFs
 # import glob

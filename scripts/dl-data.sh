@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Downloads data from the web
+# Downloads data from the web that we want to feed to the LLM
 
 set -Eeuxo pipefail
 

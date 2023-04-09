@@ -1,3 +1,19 @@
+# GPT & LangChain Chatbot for HOC
+
+How to use:
+```sh
+$ scripts/dl-data.sh
+$ python scripts/prepare-data.py
+$ export OPENAI_API_KEY=YOUR_KEY
+$ python scripts/run_local_bot.py "Your prompt"
+```
+
+---
+---
+---
+
+Original readme below:
+
 # GPT-4 & LangChain - Create a ChatGPT Chatbot for Your PDF Files
 
 Use the new GPT-4 api to build a chatGPT chatbot for multiple Large PDF files.
