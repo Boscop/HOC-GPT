@@ -2,22 +2,33 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { OpenAIEmbeddings } from 'langchain/embeddings';
 import { PineconeStore } from 'langchain/vectorstores';
 import { pinecone } from '@/utils/pinecone-client';
-import { CustomPDFLoader } from '@/utils/customPDFLoader';
+// import { CustomPDFLoader } from '@/utils/customPDFLoader';
 import { PINECONE_INDEX_NAME, PINECONE_NAME_SPACE } from '@/config/pinecone';
 import { DirectoryLoader } from 'langchain/document_loaders';
+import { UnstructuredLoader } from "langchain/document_loaders";
+import { TextLoader } from "langchain/document_loaders";
 
 /* Name of directory to retrieve your files from */
-const filePath = 'docs';
+const filePath = "docs/prepared";
 
 export const run = async () => {
+  // const unstructuredLoader = (path: string) => new UnstructuredLoader("https://api.unstructured.io/general/v0/general", path);
   try {
     /*load raw docs from the all files in the directory */
     const directoryLoader = new DirectoryLoader(filePath, {
-      '.pdf': (path) => new CustomPDFLoader(path),
-    });
+      // ".pdf": (path) => new CustomPDFLoader(path),
+      /* ".txt": unstructuredLoader,
+      ".md": unstructuredLoader,
+      ".html": unstructuredLoader,
+      ".rs": unstructuredLoader,
+      ".toml": unstructuredLoader, */
+      ".txt": (path) => new TextLoader(path),
+    }, true);
 
     // const loader = new PDFLoader(filePath);
     const rawDocs = await directoryLoader.load();
+    /* console.log('loaded docs', rawDocs);
+    return; */
 
     /* Split text into chunks */
     const textSplitter = new RecursiveCharacterTextSplitter({
